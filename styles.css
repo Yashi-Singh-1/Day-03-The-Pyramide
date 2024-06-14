@@ -1,0 +1,193 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --clr-bg: #272c34;
+  --clr-bg-sky: #7ddffc;
+  --clr-sun: #ffe900;
+  --clr-sun-down: #f57209;
+  --clr-bg-ground: #dccc6e;
+  --clr-pi-left: #f4f4f4;
+  --clr-pi-right: #dddada;
+  --clr-shadow: rgba(0, 0, 0, 0.2);
+}
+
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -200px;
+  border-radius: 2px;
+  box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: var(--clr-bg);
+  color: #333;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  clip-path: circle(90px at 50% 50%);
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.sky {
+  position: absolute;
+  height: 124px;
+  width: 100%;
+  background: var(--clr-bg-sky);
+  animation: sky-dark 4s infinite;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.49, 1);
+}
+
+.sun {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background-color: var(--clr-sun);
+  top: 7px;
+  left: 73px;
+  transform-origin: 50% 400%;
+  border-radius: 100%;
+  animation: sun-down 4s infinite;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.49, 1);
+}
+
+.ground {
+  position: absolute;
+  height: 56px;
+  width: 100%;
+  background-color: var(--clr-bg-ground);
+  bottom: 0;
+  animation: ground-dark 4s infinite;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.49, 1);
+}
+
+.side-left {
+  position: absolute;
+  width: 116px;
+  height: 57px;
+  bottom: 56px;
+  left: 35px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  background-color: var(--clr-pi-left);
+  animation: pyramid-shade 4s infinite;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.49, 1);
+}
+
+.side-right {
+  position: absolute;
+  width: 57px;
+  height: 58px;
+  bottom: 56px;
+  left: 93px;
+  clip-path: polygon(0% 0%, 100% 100%, 30% 100%);
+  background-color: var(--clr-pi-right);
+  animation: pyramid-shade 4s infinite reverse;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.49, 1);
+}
+
+.shadow {
+  position: absolute;
+  z-index: 10;
+  height: 30px;
+  width: 360px;
+  background-color: var(--clr-shadow);
+  bottom: 26px;
+  left: -80px;
+  clip-path: polygon(115px 0%, 231px 0%, 80% 100%);
+  transform-origin: 50% 0%;
+  animation: shadow 4s infinite;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.49, 1);
+}
+
+@keyframes sky-dark {
+  0%,
+  100% {
+    background-color: var(--clr-bg);
+  }
+  30%,
+  70% {
+    background-color: var(--clr-bg-sky);
+  }
+}
+
+@keyframes sun-down {
+  0% {
+    background-color: var(--clr-sun-down);
+    transform: rotate(-70deg);
+  }
+  30% {
+    background-color: var(--clr-sun);
+    transform: rotate(-20deg);
+  }
+
+  70% {
+    background-color: var(--clr-sun);
+  }
+  100% {
+    background-color: var(--clr-sun-down);
+    transform: rotate(70deg);
+  }
+}
+
+@keyframes ground-dark {
+  0%,
+  100% {
+    background-color: var(--clr-bg);
+  }
+
+  30%,
+  70% {
+    background-color: var(--clr-bg-ground);
+  }
+}
+
+@keyframes pyramid-shade {
+  0%,
+  100% {
+    background-color: var(--clr-bg);
+  }
+  30% {
+    background-color: var(--clr-pi-left);
+  }
+
+  70% {
+    background-color: var(--clr-pi-right);
+  }
+}
+
+@keyframes shadow {
+  0% {
+    transform: scaleY(0);
+    clip-path: polygon(115px 0%, 231px 0%, 100% 100%);
+  }
+  30% {
+    transform: scaleY(1);
+    clip-path: polygon(115px 0%, 231px 0%, 80% 100%);
+  }
+
+  55% {
+    transform: scaleY(0.4);
+  }
+
+  75% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+    clip-path: polygon(115px 0%, 231px 0%, 0% 100%);
+  }
+}
